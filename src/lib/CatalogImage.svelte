@@ -33,7 +33,7 @@
 </script>
 
 <img
-	src={imageInfo.src}
+	src={imageInfo.thumb}
 	alt={imageInfo.description}
 	bind:this={image}
 	on:mouseenter={handleMouseEnter}

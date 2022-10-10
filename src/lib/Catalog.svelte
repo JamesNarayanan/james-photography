@@ -7,7 +7,7 @@
 	const imagesInfo: images = {};
 
 	onMount(() => {
-		const imageModules = import.meta.glob("../assets/*.jpeg");
+		const imageModules = import.meta.glob("../assets/thumbs/*.jpeg");
 
 		for (const modulePath in imageModules) {
 			imageModules[modulePath]().then(({ default: imageUrl }) => {
@@ -15,7 +15,8 @@
 				const imageName = imageNameSegments[imageNameSegments.length - 1];
 
 				imagesInfo[imageName] = {
-					src: imageUrl,
+					thumb: imageUrl,
+					fullsize: imageUrl.replace("thumbs", "fullsize"),
 					...imageInfo[imageName]
 				};
 			});

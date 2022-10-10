@@ -1,5 +1,6 @@
 interface image {
-	src: string;
+	fullsize: string;
+	thumb: string;
 	description: string;
 	location: string;
 }

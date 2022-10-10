@@ -39,7 +39,6 @@ header {
 
 		animation: fadeInAnimation ease 1s;
 		animation-iteration-count: 1;
-		animation-fill-mode: forwards;
 
 		&:hover {
 			transform: scale(var(--image-hover-scale));
