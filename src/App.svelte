@@ -1,9 +1,12 @@
 <script lang="ts">
+	import Catalog from "./lib/Catalog.svelte";
 </script>
 
 <main>
-	<h1>James's Photography</h1>
-</main>
+	<header>
+		<span>PHOTOGRAPHY BY</span>
+		<span>JAMES</span>
+	</header>
 
-<style>
-</style>
+	<Catalog />
+</main>

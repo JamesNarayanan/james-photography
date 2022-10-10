@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap");
+
+:root {
+	--text: #333;
+	--bg: rgb(255, 255, 248);
+}
+
+body {
+	font-family: "Quicksand", sans-serif;
+	background-color: var(--bg);
+	color: var(--text);
+}
+
+header {
+	font-size: 2.5rem;
+	text-align: center;
+
+	span {
+		display: inline-block;
+
+		&::first-letter {
+			font-size: 3rem;
+		}
+	}
+}
+
+.catalog {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	grid-gap: 1rem;
+	padding: 1rem;
+
+	img {
+		width: 100%;
+	}
+}
