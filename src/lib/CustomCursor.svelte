@@ -4,8 +4,8 @@
 	let cursor: HTMLElement;
 
 	function handleMouseMove(event: MouseEvent) {
-		cursor.style.left = `${event.clientX}px`;
-		cursor.style.top = `${event.clientY}px`;
+		document.documentElement.style.setProperty("--cursor-x", event.clientX + "px");
+		document.documentElement.style.setProperty("--cursor-y", event.clientY + "px");
 	}
 	function handleMouseDown() {
 		cursor.classList.add("down");
@@ -17,3 +17,4 @@
 
 <svelte:window on:mousemove={handleMouseMove} on:mousedown={handleMouseDown} on:mouseup={handleMouseUp} />
 <div class="cursor" bind:this={cursor} />
+<div class="cursor-inner" />

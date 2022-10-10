@@ -2,29 +2,67 @@
 	cursor: none;
 }
 
+:root {
+	--cursor-x: 0;
+	--cursor-y: 0;
+	--selected-x: 0;
+	--selected-y: 0;
+	--default-cursor-size: 40px;
+	--cursor-width: var(--default-cursor-size);
+	--cursor-height: var(--default-cursor-size);
+}
+
 .cursor {
-	--border-width: 2.5px;
+	--border-width: 2px;
+	--trans-dur: 0.2s;
 
 	position: fixed;
 	pointer-events: none;
-	width: 40px;
-	height: 40px;
+	width: var(--cursor-width);
+	height: var(--cursor-height);
+	left: var(--cursor-x);
+	top: var(--cursor-y);
 	border-radius: 50%;
-	border: var(--border-width) solid rgb(0, 0, 0);
+	border: var(--border-width) solid var(--bg);
 	transform: translate(-50%, -50%);
-	transition: width 0.2s, height 0.2s;
-	z-index: 9999;
-
-	&.down {
-		width: 30px;
-		height: 30px;
-	}
+	transition: all 0.2s ease-out;
+	transition-duration: var(--trans-dur);
+	z-index: 9998;
 
 	&:before {
 		content: "";
 		position: absolute;
 		inset: 0px;
-		border: var(--border-width) solid var(--bg);
+		border: var(--border-width) solid black;
 		border-radius: 50%;
+		transition: border-radius var(--trans-dur) ease-out;
 	}
+
+	&.object-hover {
+		border-radius: 5px;
+		left: var(--selected-x);
+		top: var(--selected-y);
+	}
+
+	&.object-hover:before {
+		border-radius: 5px;
+	}
+
+	&:not(.object-hover).down {
+		--cursor-width: 30px;
+		--cursor-height: 30px;
+	}
+}
+
+.cursor-inner {
+	position: fixed;
+	pointer-events: none;
+	width: 10px;
+	height: 10px;
+	left: var(--cursor-x);
+	top: var(--cursor-y);
+	border-radius: 50%;
+	background-color: rgba(0, 0, 0, 0.8);
+	transform: translate(-50%, -50%);
+	z-index: 9999;
 }

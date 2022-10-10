@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 	import imageInfo from "../imageInfo.json";
-	import type images from "../types/image";
+	import type { images } from "../types/image";
+	import CatalogImage from "./CatalogImage.svelte";
 
 	const imagesInfo: images = {};
 
@@ -25,7 +26,7 @@
 <div class="catalog">
 	{#if Object.keys(imagesInfo).length > 0}
 		{#each Object.entries(imagesInfo) as [imageName, imageInfo]}
-			<img src={imageInfo.src} alt={imageInfo.description} />
+			<CatalogImage {imageName} {imageInfo} />
 		{/each}
 	{:else}
 		<div class="loading">Loading...</div>

@@ -8,4 +8,4 @@ type images = {
 	[key: string]: image;
 };
 
-export default images;
+export { type images, type image };
