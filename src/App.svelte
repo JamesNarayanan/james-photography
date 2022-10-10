@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Catalog from "./lib/Catalog.svelte";
+	import CustomCursor from "./lib/CustomCursor.svelte";
 </script>
 
 <main>
@@ -9,4 +10,5 @@
 	</header>
 
 	<Catalog />
+	<CustomCursor />
 </main>
