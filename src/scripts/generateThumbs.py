@@ -30,8 +30,9 @@ print(
 
 for i, file in enumerate(files):
     img = Image.open(path + file)
+    exif = img.info['exif']
     img.thumbnail((512, 512))
-    img.save(path + "../thumbs/" + file)
+    img.save(path + "../thumbs/" + file, exif=exif)
 
     checks = "✓" * (i + 1)
     dots = "." * (len(files) - i - 1)

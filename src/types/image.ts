@@ -3,6 +3,7 @@ interface image {
 	thumb: string;
 	description: string;
 	location: string;
+	exif: any;
 }
 
 type images = {

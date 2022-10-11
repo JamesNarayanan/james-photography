@@ -21,6 +21,22 @@
 				};
 			});
 		}
+
+		// Get the exif metadata for the images on window load
+		window.onload = getData;
+		function getData() {
+			const images = document.getElementsByTagName("img");
+			const EXIF = (window as any).EXIF;
+			for (var i = 0; i < images.length; i++) {
+				const details = images[i];
+				const imageNameSegments = details.currentSrc.split("/");
+				const imageName = imageNameSegments[imageNameSegments.length - 1];
+				EXIF.getData(images[i], function () {
+					var allMetaData = EXIF.getAllTags(this);
+					imagesInfo[imageName].exif = allMetaData;
+				});
+			}
+		}
 	});
 </script>
 
