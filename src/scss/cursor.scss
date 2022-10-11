@@ -24,28 +24,18 @@
 	top: var(--cursor-y);
 	border-radius: 50%;
 	border: var(--border-width) solid var(--bg);
+	filter: drop-shadow(0 0 5px #aaa);
 	transform: translate(-50%, -50%);
 	transition: all 0.2s ease-out;
 	transition-duration: var(--trans-dur);
 	z-index: 9998;
 
-	&:before {
-		content: "";
-		position: absolute;
-		inset: 0px;
-		border: var(--border-width) solid black;
-		border-radius: 50%;
-		transition: border-radius var(--trans-dur) ease-out;
-	}
-
 	&.object-hover {
+		position: absolute;
 		border-radius: 5px;
 		left: var(--selected-x);
 		top: var(--selected-y);
-	}
-
-	&.object-hover:before {
-		border-radius: 5px;
+		filter: drop-shadow(0 0 5px black);
 	}
 
 	&:not(.object-hover).down {
@@ -65,4 +55,19 @@
 	background-color: rgba(0, 0, 0, 0.8);
 	transform: translate(-50%, -50%);
 	z-index: 9999;
+	transition: opacity 0.2s;
+}
+.cursor-inner.zoom-in {
+	opacity: 0;
+	background-color: transparent;
+	filter: drop-shadow(0 0 5px var(--text));
+}
+
+.cursor.object-hover ~ .cursor-inner {
+	&.default {
+		opacity: 0;
+	}
+	&.zoom-in {
+		opacity: 1;
+	}
 }

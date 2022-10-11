@@ -17,7 +17,7 @@
 		document.getElementsByClassName("cursor")[0].classList.add("object-hover");
 		const rect = image.getBoundingClientRect();
 		const x = rect.left + rect.width / 2;
-		const y = rect.top + rect.height / 2;
+		const y = image.offsetTop + rect.height / 2;
 		const width = rect.width * imageHoverScale;
 		const height = rect.height * imageHoverScale;
 		document.documentElement.style.setProperty("--selected-x", x + "px");
@@ -33,7 +33,7 @@
 </script>
 
 <img
-	src={imageInfo.thumb}
+	src={imageInfo.fullsize}
 	alt={imageInfo.description}
 	bind:this={image}
 	on:mouseenter={handleMouseEnter}
