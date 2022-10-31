@@ -42,8 +42,8 @@
 
 <div class="catalog">
 	{#if Object.keys(imagesInfo).length > 0}
-		{#each Object.entries(imagesInfo) as [imageName, imageInfo]}
-			<CatalogImage {imageName} {imageInfo} />
+		{#each Object.values(imagesInfo) as imageInfo}
+			<CatalogImage {imageInfo} />
 		{/each}
 	{:else}
 		<div class="loading">Loading...</div>

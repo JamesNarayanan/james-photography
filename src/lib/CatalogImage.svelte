@@ -1,8 +1,12 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 	import type { image } from "../types/image";
+	import ApertureIcon from "../assets/icons/ApertureIcon.svelte";
+	import CameraIcon from "../assets/icons/CameraIcon.svelte";
+	import FocalLengthIcon from "../assets/icons/FocalLengthIcon.svelte";
+	import IsoIcon from "../assets/icons/IsoIcon.svelte";
+	import ShutterSpeedIcon from "../assets/icons/ShutterSpeedIcon.svelte";
 
-	export let imageName: string;
 	export let imageInfo: image;
 
 	let focused: boolean = false;
@@ -38,6 +42,7 @@
 	function handleClick() {
 		focused = !focused;
 		if (focused) {
+			// console.log(imageInfo.exif);
 			document.getElementsByClassName("cursor")[0].classList.remove("object-hover");
 			document.documentElement.style.setProperty("--cursor-width", "var(--default-cursor-size)");
 			document.documentElement.style.setProperty("--cursor-height", "var(--default-cursor-size)");
@@ -45,12 +50,43 @@
 	}
 </script>
 
-<div class={`image-container ${focused ? "focused" : ""}`} bind:this={imageWrapper}>
-	<img
-		src={imageInfo.fullsize}
-		alt={imageInfo.description}
-		on:mouseenter={handleMouseEnter}
-		on:mouseleave={handleMouseExit}
-		on:click={handleClick}
-	/>
+<div class={`image-container-outer ${focused ? "focused" : ""}`} bind:this={imageWrapper}>
+	<div class="image-container-inner">
+		<img
+			src={imageInfo.fullsize}
+			alt={imageInfo.description}
+			on:mouseenter={handleMouseEnter}
+			on:mouseleave={handleMouseExit}
+			on:click={handleClick}
+		/>
+		<div class="details">
+			<div class="detail">
+				<CameraIcon />
+				{imageInfo.exif?.Make}
+				{imageInfo.exif?.Model}
+			</div>
+			<div class="detail">
+				<FocalLengthIcon />
+				{imageInfo.exif?.FocalLength}mm
+			</div>
+			<div class="detail">
+				<ApertureIcon />
+				<div>
+					<i>f</i>/{imageInfo.exif?.FNumber}
+				</div>
+			</div>
+			<div class="detail">
+				<ShutterSpeedIcon />
+				{#if imageInfo.exif?.ExposureTime < 1}
+					{imageInfo.exif?.ExposureTime.numerator}/{imageInfo.exif?.ExposureTime.denominator}s
+				{:else}
+					{imageInfo.exif?.ExposureTime}s
+				{/if}
+			</div>
+			<div class="detail">
+				<IsoIcon />
+				{imageInfo.exif?.ISOSpeedRatings}
+			</div>
+		</div>
+	</div>
 </div>
