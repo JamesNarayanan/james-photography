@@ -26,8 +26,7 @@
 	border: var(--border-width) solid var(--bg);
 	filter: drop-shadow(0 0 5px #aaa);
 	transform: translate(-50%, -50%);
-	transition: all 0.2s ease-out;
-	transition-duration: var(--trans-dur);
+	transition: all var(--trans-dur) ease-out, left 0s, top 0s;
 	z-index: 9998;
 
 	&.object-hover {
@@ -36,6 +35,7 @@
 		left: var(--selected-x);
 		top: var(--selected-y);
 		filter: drop-shadow(0 0 5px black);
+		transition: all var(--trans-dur) ease-out;
 	}
 
 	&:not(.object-hover).down {

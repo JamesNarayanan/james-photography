@@ -10,6 +10,29 @@ body {
 	font-family: "Quicksand", sans-serif;
 	background-color: var(--bg);
 	color: var(--text);
+
+	&:has(.focused) {
+		overflow: hidden;
+
+		.overlay {
+			opacity: 1;
+			pointer-events: all;
+		}
+	}
+}
+
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.9);
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.2s;
+	z-index: 1;
+	backdrop-filter: blur(5px);
 }
 
 header {
@@ -32,23 +55,45 @@ header {
 	gap: 1rem;
 	padding: 1rem;
 
-	img {
-		width: 100%;
-		border-radius: 5px;
-		transition: opacity 0.2s;
+	.image-container {
 		transition: transform 0.4s;
 
-		animation: fadeInAnimation ease 1s;
-		animation-iteration-count: 1;
-
-		&:hover {
+		&:not(.focused):hover {
 			transform: scale(var(--image-hover-scale));
 			z-index: 1;
 			transition: transform 0.2s;
 		}
+
+		&.focused {
+			--focused-margin: 2rem;
+
+			z-index: 2;
+			position: fixed;
+			top: 0;
+			left: 0;
+			padding: var(--focused-margin);
+			width: calc(100% - var(--focused-margin) * 2);
+			height: calc(100% - var(--focused-margin) * 2);
+
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		img {
+			display: block;
+			max-width: 100%;
+			max-height: 100%;
+			height: max-content;
+			border-radius: 5px;
+
+			transition: opacity 0.2s;
+			animation: fadeInAnimation ease 1s;
+			animation-iteration-count: 1;
+		}
 	}
 
-	&:has(img:hover) img:not(:hover) {
+	&:not(:has(.focused)):has(img:hover) img:not(:hover) {
 		filter: brightness(0.75);
 	}
 

@@ -9,6 +9,7 @@
 		<span>JAMES</span>
 	</header>
 
+	<div class="overlay" />
 	<Catalog />
 	<CustomCursor />
 </main>
