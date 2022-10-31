@@ -1,6 +1,6 @@
 <script lang="ts">
+	import ZoomInIcon from "../assets/icons/ZoomInIcon.svelte";
 	import "../scss/cursor.scss";
-	import { ZoomIn } from "svelte-bootstrap-icons";
 
 	let cursor: HTMLElement;
 
@@ -19,4 +19,4 @@
 <svelte:window on:mousemove={handleMouseMove} on:mousedown={handleMouseDown} on:mouseup={handleMouseUp} />
 <div class="cursor" bind:this={cursor} />
 <div class="cursor-inner default" />
-<div class="cursor-inner zoom-in"><ZoomIn width={20} height={20} fill="var(--bg)" /></div>
+<div class="cursor-inner zoom-in"><ZoomInIcon className="invert-icon" /></div>

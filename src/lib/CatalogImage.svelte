@@ -59,34 +59,36 @@
 			on:mouseleave={handleMouseExit}
 			on:click={handleClick}
 		/>
-		<div class="details">
-			<div class="detail">
-				<CameraIcon />
-				{imageInfo.exif?.Make}
-				{imageInfo.exif?.Model}
-			</div>
-			<div class="detail">
-				<FocalLengthIcon />
-				{imageInfo.exif?.FocalLength}mm
-			</div>
-			<div class="detail">
-				<ApertureIcon />
-				<div>
-					<i>f</i>/{imageInfo.exif?.FNumber}
+		{#if imageInfo.exif}
+			<div class="details">
+				<div class="detail">
+					<CameraIcon />
+					{imageInfo.exif.Make}
+					{imageInfo.exif.Model}
+				</div>
+				<div class="detail">
+					<FocalLengthIcon />
+					{imageInfo.exif.FocalLength}mm
+				</div>
+				<div class="detail">
+					<ApertureIcon />
+					<div>
+						<i>f</i>/{imageInfo.exif.FNumber}
+					</div>
+				</div>
+				<div class="detail">
+					<ShutterSpeedIcon />
+					{#if imageInfo.exif.ExposureTime < 1}
+						{imageInfo.exif.ExposureTime.numerator}/{imageInfo.exif.ExposureTime.denominator}s
+					{:else}
+						{imageInfo.exif.ExposureTime}s
+					{/if}
+				</div>
+				<div class="detail">
+					<IsoIcon />
+					{imageInfo.exif.ISOSpeedRatings}
 				</div>
 			</div>
-			<div class="detail">
-				<ShutterSpeedIcon />
-				{#if imageInfo.exif?.ExposureTime < 1}
-					{imageInfo.exif?.ExposureTime.numerator}/{imageInfo.exif?.ExposureTime.denominator}s
-				{:else}
-					{imageInfo.exif?.ExposureTime}s
-				{/if}
-			</div>
-			<div class="detail">
-				<IsoIcon />
-				{imageInfo.exif?.ISOSpeedRatings}
-			</div>
-		</div>
+		{/if}
 	</div>
 </div>

@@ -24,4 +24,5 @@ dist-ssr
 *.sw?
 
 # Custom rules
-assets/
+/src/assets/fullsize
+/src/assets/thumbs

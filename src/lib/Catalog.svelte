@@ -7,16 +7,16 @@
 	const imagesInfo: images = {};
 
 	onMount(() => {
-		const imageModules = import.meta.glob("../assets/thumbs/*.jpeg");
-
+		// Fullsize and thumbnail images have to be loaded seperately
+		// so that vite knows to include both of them in the build
+		const imageModules = import.meta.glob("../assets/fullsize/*.jpeg");
 		for (const modulePath in imageModules) {
 			imageModules[modulePath]().then(({ default: imageUrl }) => {
 				const imageNameSegments = imageUrl.split("/");
 				const imageName = imageNameSegments[imageNameSegments.length - 1];
 
 				imagesInfo[imageName] = {
-					thumb: imageUrl,
-					fullsize: imageUrl.replace("thumbs", "fullsize"),
+					fullsize: imageUrl,
 					...imageInfo[imageName]
 				};
 			});
@@ -45,7 +45,5 @@
 		{#each Object.values(imagesInfo) as imageInfo}
 			<CatalogImage {imageInfo} />
 		{/each}
-	{:else}
-		<div class="loading">Loading...</div>
 	{/if}
 </div>
