@@ -5,6 +5,7 @@
 	import CameraIcon from "../assets/icons/CameraIcon.svelte";
 	import FocalLengthIcon from "../assets/icons/FocalLengthIcon.svelte";
 	import IsoIcon from "../assets/icons/IsoIcon.svelte";
+	import LocationIcon from "../assets/icons/LocationIcon.svelte";
 	import ShutterSpeedIcon from "../assets/icons/ShutterSpeedIcon.svelte";
 
 	export let imageInfo: image;
@@ -59,9 +60,12 @@
 			on:click={handleClick}
 		/>
 		<div class="image-overlay">
-			<button class="x" on:click={() => (focused = false)}>&times;</button>
+			<div class="top">
+				<button class="x" on:click={() => (focused = false)}>&times;</button>
+				<div class="detail"><LocationIcon /> {imageInfo.location}</div>
+			</div>
 			{#if imageInfo.exif}
-				<div class="details">
+				<div class="bottom">
 					<div class="detail">
 						<CameraIcon />
 						{imageInfo.exif.Make}
