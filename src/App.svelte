@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Catalog from "./lib/Catalog.svelte";
-	import CustomCursor from "./lib/CustomCursor.svelte";
+	import Catalog from "./components/Catalog.svelte";
+	import CustomCursor from "./components/CustomCursor.svelte";
 </script>
 
 <main>

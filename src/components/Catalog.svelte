@@ -9,6 +9,8 @@
 	onMount(() => {
 		// Fullsize and thumbnail images have to be loaded seperately
 		// so that vite knows to include both of them in the build
+		// To do this, glob them seperately instead of just changing
+		// the path in the "thumb" attribute of the imagesInfo object
 		const imageModules = import.meta.glob("../assets/fullsize/*.jpeg");
 		for (const modulePath in imageModules) {
 			imageModules[modulePath]().then(({ default: imageUrl }) => {
